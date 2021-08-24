@@ -39,7 +39,8 @@ const Agenda = (): ReactElement => {
     [account],
   )
 
-  const title = useMemo(() => greeting(DateTime.local().hour), [])
+  const localHour = DateTime.local().hour
+  const title = useMemo(() => greeting(localHour), [localHour])
 
   return (
     <div className={style.outer}>
