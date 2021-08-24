@@ -69,6 +69,14 @@ The requirements for this feature are:
 Please add your answers to the questions below:
 
 1. How long did you spend on this challenge?
+4 hrs.
+
 2. In your opinion, what are features that Double could work on that would be helpful for assistants when managing agendas?
+A way to communicate updates, leave notes for each task, re-schedule tasks, highlight tasks with time conflicts, etc.
+
 3. If you had more time, what would you add or change in the codebase?
+Short term changes: I would work on the styling a bit more, change the alert dialog box to a toast message, give the calendar a name field.
+Long term changes: Add nav bar, create different views (calendar, week, day), be able to see past and future agendas, clicking on an event displays a modal with more information about the event.
+
 4. Do you have any constructive feedback that you would like to share with our team?
+Only thing is the length of the challenge is quite long. It is the longest take home challenge I've done by far. I also spent a good amount of time familiarizing myself with the code. It is a great challenge nontheless.
