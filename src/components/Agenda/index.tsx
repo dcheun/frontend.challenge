@@ -29,6 +29,7 @@ const compareByDateTime = (a: AgendaItem, b: AgendaItem) =>
 const Agenda = (): ReactElement => {
   const account = useContext(AccountContext)
   const [calChoice, setCalChoice] = useState('all')
+  const [deptView, setDeptView] = useState(false)
 
   const events: AgendaItem[] = useMemo(
     () =>
@@ -45,10 +46,18 @@ const Agenda = (): ReactElement => {
 
   const localHour = DateTime.local().hour
   const title = useMemo(() => greeting(localHour), [localHour])
+  // Get unique departments
+  const departments = events
+    .map((event) => event.event.department)
+    .filter((value, index, self) => self.indexOf(value) === index)
 
   const handleCalChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const { value } = e.target
     setCalChoice(value)
+  }
+
+  const handleToggleDeptView = () => {
+    setDeptView(!deptView)
   }
 
   return (
@@ -67,13 +76,43 @@ const Agenda = (): ReactElement => {
               ))}
             </select>
           </span>
+          <span>
+            <button
+              className={style.deptToggleBtn}
+              onClick={handleToggleDeptView}
+            >
+              {deptView ? 'Default View' : 'Department View'}
+            </button>
+          </span>
         </div>
 
-        <List>
-          {events.map(({ calendar, event }) => (
-            <EventCell key={event.id} calendar={calendar} event={event} />
-          ))}
-        </List>
+        {deptView ? (
+          departments.map((department) => (
+            <>
+              <div className={style.deptGroupHeader}>
+                <span>{department ? department : 'No Department'}</span>
+                <hr />
+              </div>
+              <List>
+                {events
+                  .filter((event) => event.event.department === department)
+                  .map(({ calendar, event }) => (
+                    <EventCell
+                      key={event.id}
+                      calendar={calendar}
+                      event={event}
+                    />
+                  ))}
+              </List>
+            </>
+          ))
+        ) : (
+          <List>
+            {events.map(({ calendar, event }) => (
+              <EventCell key={event.id} calendar={calendar} event={event} />
+            ))}
+          </List>
+        )}
       </div>
     </div>
   )

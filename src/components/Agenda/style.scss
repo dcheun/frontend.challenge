@@ -8,6 +8,8 @@
   right: 0;
   background: $lightGrayColor;
   padding: 8px;
+  height: fit-content;
+  min-height: -webkit-fill-available;
 }
 
 .container {
@@ -33,4 +35,13 @@
 .header {
   @include title-text;
   color: $blackColor;
+}
+
+.deptGroupHeader {
+  @include basic-text;
+  padding: 16px 16px 0px 16px;
+}
+
+.deptToggleBtn {
+  cursor: pointer;
 }
